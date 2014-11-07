@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import optparse
-import os, fnmatch, fileinput, subprocess, gzip, re
+import os, fnmatch, fileinput, subprocess, gzip, re, sys
 
 def main():
 	p = optparse.OptionParser()
@@ -46,7 +46,11 @@ def search_copilation_string_for_file_in_directory(searching_file, directory, ar
 	for currentfile in out.splitlines():
 		if currentfile.endswith(".xcactivitylog"):
 			for compilation_params in search_file_in_activity_log(searching_file, os.path.join(directory, currentfile), architecture):
-				print compilation_params
+				if sys.hexversion < 0x03000000:
+					print compilation_params
+				else:
+					print(compilation_params)
+
 
 
 if __name__ == '__main__':
