@@ -1,11 +1,12 @@
 language: python
 python:
   - "2.7"
-  # - "3.2"
-  # - "3.3"
-  # - "3.4"
+  - "3.2"
+  - "3.3"
+  - "3.4"
 # command to run tests
 install:
   - pip install pytest --use-mirrors
+  - pip install six --use-mirrors
 
 script: make test
