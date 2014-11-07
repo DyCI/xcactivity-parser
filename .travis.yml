@@ -8,4 +8,4 @@ python:
 install:
   - pip install pytest --use-mirrors
 
-script: make tests
+script: make test
