@@ -2,4 +2,4 @@ all: test
 
 
 test:
-	py.test ./tests/*
+	py.test ./tests/* 
