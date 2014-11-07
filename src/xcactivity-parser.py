@@ -32,7 +32,7 @@ def main():
 	search_copilation_string_for_file_in_directory(options.file, options.xcactivity_files_dir, options.arch) 
 
 def search_file_in_activity_log(searching_file, activity_log_file, architecture):
-	f = gzip.open(activity_log_file, 'rb')
+	f = gzip.open(activity_log_file, 'rUb')
 	for line in f.readlines():
 		if searching_file in line and "/XcodeDefault.xctoolchain" in line:
 			for rline in line.split("\r"):
