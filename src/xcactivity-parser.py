@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+from __future__ import print_function
+
 import optparse
 import os, fnmatch, fileinput, subprocess, gzip, re, sys
 
@@ -46,10 +48,7 @@ def search_copilation_string_for_file_in_directory(searching_file, directory, ar
 	for currentfile in out.splitlines():
 		if currentfile.endswith(".xcactivitylog"):
 			for compilation_params in search_file_in_activity_log(searching_file, os.path.join(directory, currentfile), architecture):
-				if sys.hexversion < 0x03000000:
-					print compilation_params
-				else:
-					print(compilation_params)
+				print(compilation_params)
 
 
 
