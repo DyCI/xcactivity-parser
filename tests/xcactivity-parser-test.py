@@ -62,7 +62,7 @@ def test_arguments_on_existed_file():
 	assert not "Usage:" in err
 	# print out
 	# print err
- 	assert compilationString == out.strip()
+	assert compilationString == out.strip()
 
 def test_arguments_on_existed_file():
 	existingfile="/Volumes/data/Projects/dyci-main/Dynamic\ Code\ Injection/dyci/Classes/Notifications/SFInjectionsNotificationsCenter.m"
@@ -72,7 +72,7 @@ def test_arguments_on_existed_file():
 	assert not "Usage:" in err
 	# print out
 	# print err
- 	assert compilationString == out.strip() 	
+	assert compilationString == out.strip() 	
 
 def test_arguments_on_existed_file_different_architecture():
 	existingfile="/Volumes/data/Projects/dyci-main/Dynamic\ Code\ Injection/dyci/Classes/Notifications/SFInjectionsNotificationsCenter.m"
@@ -82,5 +82,5 @@ def test_arguments_on_existed_file_different_architecture():
 	assert not "Usage:" in err
 	# print out
 	# print err
- 	assert compilationString != out.strip()
+	assert compilationString != out.strip()
 
