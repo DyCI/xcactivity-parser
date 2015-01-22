@@ -14,3 +14,10 @@ Options:
   -a ARCH, --arch=ARCH  Architecture for which file was compiled
 ```
 
+Tests
+=====
+For running tests - please simply run  
+`make test`  
+
+This should work for you. If not - you can check, how travis is performing testing (see `travis.yml`)
+
