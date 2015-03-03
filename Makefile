@@ -10,3 +10,6 @@ testpython3:
 testvv:
 	py.test ./tests/* -vv
 
+testwithspaces:	
+	py.test -k "with_spaces" -vv ./tests/*
+
