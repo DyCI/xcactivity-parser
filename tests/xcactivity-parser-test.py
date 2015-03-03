@@ -134,7 +134,22 @@ def test_for_filesearch_with_working_dir():
     out, err = run_subprocess(
         [script_path, "-f", existingfile, "-x", fixtures_file_with_spaces_path, "-a", "x86_64", "-w"])
     assert not "Usage:" in err
-    assert len(out.strip().splitlines()) == 2
-    # assert compilationString == out.strip()
-
+    result = out.strip().splitlines()
+    assert len(result) == 2
+    assert compilationString == result[1]
+    assert working_directory == result[0]
    
+
+def test_for_filesearch_with_working_dir_with_spaces():
+    existingfile = "/Volumes/data/Projects/dyci-main/Dynamic\ Code\ Injection/dyci/Classes/Notifications/SFInjectionsNotificationsCenter.m"
+    working_directory = "/Volumes/data/Projects/dyci-main/Dynamic Code Injection/dyci-framework"
+    compilationString = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/ptaykalo/Library/Developer/Xcode/DerivedData/ModuleCache -fmodules-prune-interval=86400 -fmodules-prune-after=345600 -Wnon-modular-include-in-framework-module -Werror=non-modular-include-in-framework-module -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wunreachable-code -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DNS_BLOCK_ASSERTIONS=1 -DOBJC_OLD_DISPATCH_PROTOTYPES=0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=8.1 -iquote /Users/ptaykalo/Library/Developer/Xcode/DerivedData/DYCI-hfgqlcmijbqsjtcnjyhbxgpcckwj/Build/Intermediates/dyci-framework.build/Release-iphonesimulator/dyci.build/dyci-generated-files.hmap -I/Users/ptaykalo/Library/Developer/Xcode/DerivedData/DYCI-hfgqlcmijbqsjtcnjyhbxgpcckwj/Build/Intermediates/dyci-framework.build/Release-iphonesimulator/dyci.build/dyci-own-target-headers.hmap -I/Users/ptaykalo/Library/Developer/Xcode/DerivedData/DYCI-hfgqlcmijbqsjtcnjyhbxgpcckwj/Build/Intermediates/dyci-framework.build/Release-iphonesimulator/dyci.build/dyci-all-target-headers.hmap -iquote /Users/ptaykalo/Library/Developer/Xcode/DerivedData/DYCI-hfgqlcmijbqsjtcnjyhbxgpcckwj/Build/Intermediates/dyci-framework.build/Release-iphonesimulator/dyci.build/dyci-project-headers.hmap -I/Users/ptaykalo/Library/Developer/Xcode/DerivedData/DYCI-hfgqlcmijbqsjtcnjyhbxgpcckwj/Build/Products/Release-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/ptaykalo/Library/Developer/Xcode/DerivedData/DYCI-hfgqlcmijbqsjtcnjyhbxgpcckwj/Build/Intermediates/dyci-framework.build/Release-iphonesimulator/dyci.build/DerivedSources/x86_64 -I/Users/ptaykalo/Library/Developer/Xcode/DerivedData/DYCI-hfgqlcmijbqsjtcnjyhbxgpcckwj/Build/Intermediates/dyci-framework.build/Release-iphonesimulator/dyci.build/DerivedSources -F/Users/ptaykalo/Library/Developer/Xcode/DerivedData/DYCI-hfgqlcmijbqsjtcnjyhbxgpcckwj/Build/Products/Release-iphonesimulator -MMD -MT dependencies -MF /Users/ptaykalo/Library/Developer/Xcode/DerivedData/DYCI-hfgqlcmijbqsjtcnjyhbxgpcckwj/Build/Intermediates/dyci-framework.build/Release-iphonesimulator/dyci.build/Objects-normal/x86_64/SFInjectionsNotificationsCenter.d --serialize-diagnostics /Users/ptaykalo/Library/Developer/Xcode/DerivedData/DYCI-hfgqlcmijbqsjtcnjyhbxgpcckwj/Build/Intermediates/dyci-framework.build/Release-iphonesimulator/dyci.build/Objects-normal/x86_64/SFInjectionsNotificationsCenter.dia -c /Volumes/data/Projects/dyci-main/Dynamic\ Code\ Injection/dyci/Classes/Notifications/SFInjectionsNotificationsCenter.m -o /Users/ptaykalo/Library/Developer/Xcode/DerivedData/DYCI-hfgqlcmijbqsjtcnjyhbxgpcckwj/Build/Intermediates/dyci-framework.build/Release-iphonesimulator/dyci.build/Objects-normal/x86_64/SFInjectionsNotificationsCenter.o"
+    out, err = run_subprocess([script_path, "-f", existingfile, "-x", fixtures_path, "-a", "x86_64", "-w"])
+    assert not "Usage:" in err
+    result = out.strip().splitlines()
+    assert len(result) == 2
+    assert compilationString == result[1]
+    assert working_directory == result[0]
+
+
+

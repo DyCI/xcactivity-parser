@@ -35,12 +35,17 @@ def main():
 
 def search_file_in_activity_log(searching_file, activity_log_file, architecture, show_working_dir = False):
     f = gzip.open(activity_log_file, 'rUb')
+
     latest_working_dir = None
+    latest_working_dir_regex = re.compile('\\s*cd\\ "?(.*?)"?$')
+
     for line in f.readlines():
         if searching_file in line and "/XcodeDefault.xctoolchain" in line:
             for rline in line.split("\r"):
-                if rline.startswith("cd "):
-                    latest_working_dir = rline[3:].strip()
+                latest_working_dir_match = latest_working_dir_regex.match(rline.strip())
+                if latest_working_dir_match:
+                    latest_working_dir = latest_working_dir_match.group(1)
+                    
                 if searching_file in rline and "/XcodeDefault.xctoolchain" in rline and "-arch " + architecture in rline:
                     if rline.endswith(".o"):
                         if show_working_dir == True:
