@@ -12,6 +12,7 @@ Options:
                         Directory where .xcactivity files are located
   -f FILE, --file=FILE  File for which parameters are searching for
   -a ARCH, --arch=ARCH  Architecture for which file was compiled
+  -w, --working-dir     Add working dir before compilation line
 ```
 
 Tests
